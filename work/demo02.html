@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<title> new document </title>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<script type="text/javascript">
+			var num;
+			window.onload = function() {
+				// 鼠标移动改变背景,可以通过给每行绑定鼠标移上事件和鼠标移除事件来改变所在行背景色。
+				var tr = document.getElementsByTagName('tr');
+				num = document.getElementsByTagName('tr').length - 1;
+				for(var i = 0; i < tr.length; i++) {
+					change(tr[i]);
+				}
+				return num;
+			}
+
+			function change(obj) {
+				obj.onmouseover = function() {
+					obj.style.backgroundColor = "#f2f2f2";
+				}
+				obj.onmouseout = function() {
+					obj.style.backgroundColor = "#fff";
+				}
+			}
+			// 编写一个函数，供添加按钮调用，动态在表格的最后一行添加子节点；
+			function add() {
+				num++;
+				var tab = document.getElementById("table");
+				var tr = document.createElement("tr");
+				var td1 = document.createElement("td");
+				var td2 = document.createElement("td");
+				var del = document.createElement("td");
+				td1.innerHTML = 'xh00' + num;
+				td2.innerHTML = 'name' + num;
+				del.innerHTML = '<a href="javascript:;" onclick="del(this);">删除</a>';
+				tr.appendChild(td1);
+				tr.appendChild(td2);
+				tr.appendChild(del);
+				tab.appendChild(tr);
+				var tr = document.getElementsByTagName('tr');
+				for(var i = 0; i < tr.length; i++) {
+					change(tr[i]);
+				}
+			}
+			// 创建删除函数
+			function del(obj) {
+				var del = obj.parentNode.parentNode;
+				del.parentNode.removeChild(del);
+				var tr = document.getElementsByTagName('tr');
+				num = document.getElementsByTagName('tr').length - 1;
+				return num;
+			}
+		</script>
+	</head>
