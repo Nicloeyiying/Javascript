@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+
+	<body>
+		<script type="text/javascript">
+			function arraysSimilar(arr1, arr2) {
+				//判断是否为数组
+				if(!(arr1 instanceof Array) || !(arr2 instanceof Array)) {
+					return false;
+				}
+				//判断数组长度是否相等
+				if(arr1.length !== arr2.length) {
+					return false;
+				}
+				var i = 0,
+					a = arr1.length,
+					a1 = [0, 0, 0, 0, 0, 0, 0, 0],
+					a2 = [0, 0, 0, 0, 0, 0, 0, 0],
+					TYPES = ['string', 'number', 'function', 'null', 'undefined', 'array', 'date', 'window'],
+					b = TYPES.length;
+				//定义判断数组元素的数据类型，并将之转换为小写
+				function typeOf(arr) {
+					var b;
+					if(arr instanceof Array) b = 'array';
+					else if(arr instanceof Date) b = 'date';
+					else if(arr === null) b = 'null';
+					else if(arr === window) b = 'window';
+					else b = typeof arr;
+					return b;
+				}
+				//计算数组中每种数据类型的个数
+				for(i = 0; i < a; i++) {
+					for(var j = 0; j < b; j++) {
+						if(typeOf(arr1[i]) === TYPES[j]) {
+							a1[j]++;
+						}
+						if(typeOf(arr2[i]) === TYPES[j]) {
+							a2[j]++;
+						}
+					}
+				}
+				//判断arr1对应的数据类型数组是否与arr2数据类型定义的数组相同，若相同返回true
+				for(i = 0; i < b; i++) {
+					if(i == b - 1 && (a1[b - 1] === a2[b - 1])) {
+						return true;
+					}
+					if(a1[i] !== a2[i]) {
+						return false;
+					}
+				}
+			}
+		</script>
+		<script src="js/testData.js"></script>
+	</body>
+
+</html>
