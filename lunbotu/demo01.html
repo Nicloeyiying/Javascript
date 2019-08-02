@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>Demo01</title>
+		<script type="text/javascript">
+			window.onload = function() {
+				var oDiv1 = document.getElementById('div1');
+				var oInput1 = document.getElementById('input1');
+				oInput1.onclick = function() {
+					var arr = oDiv1.innerHTML.split(',');
+					arr.push(arr[0]);
+					arr.shift();
+					oDiv1.innerHTML = arr;
+				};
+				
+				var oDiv2 = document.getElementById('div2');
+				var oInput2 = document.getElementById('input2');
+				oInput2.onclick = function() {
+					var arr = oDiv2.innerHTML.split(',');	
+					arr.unshift(arr[arr.length-1]);
+					arr.pop();				
+					oDiv2.innerHTML = arr;
+				};
+			};
+		</script>
+	</head>
+	<body>
+		<div id="div1">1,2,3,4</div>
+		<input type="button" id="input1" value="←" />
+		<div id="div2">1,2,3,4</div>
+		<input type="button" id="input2" value="→" />
+	</body>
+</html>
